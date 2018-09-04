@@ -1,13 +1,17 @@
-var http = require('http');
 
-var server = http.createServer(function(request, response) {
+var app = require("express")();
+var http = require('http').Server(app);
 
-    response.writeHead(200, {"Content-Type": "text/plain"});
-    response.end("Hello Football judge! De parte de Gerardo y kevin. Page is on maintenance ");
+app.get('/', function (req, res) {
+  res.sendFile(__dirname + '/Maintenancepage.html');
+})
 
-});
+app.get('/FJ_Mascot3.png', function (req, res) {
+  res.sendFile(__dirname + '/FJ_Mascot3.png');
+})
+
 
 var port = process.env.PORT || 1337;
-server.listen(port);
+http.listen(port);
 
 console.log("Server running at http://localhost:%d", port);
